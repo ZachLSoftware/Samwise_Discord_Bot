@@ -6,7 +6,7 @@ import random as rand
 
 from dotenv import load_dotenv
 
-class SamwiseBot:
+class FrodoBot:
   stopwords = []
   dialog = None
 
@@ -23,11 +23,11 @@ class SamwiseBot:
                                   'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 
                                   'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now'])
     
-    self.dialog = d[d["char"] == "SAM"]
+    self.dialog = d[d["char"] == "FRODO"]
     self.dialog = d.reset_index(drop=True)
     
     
-    TOKEN = os.getenv("SAM_TOKEN")
+    TOKEN = os.getenv("FRODO_TOKEN")
     intents = discord.Intents.default()
     intents.message_content=True
     
@@ -43,7 +43,7 @@ class SamwiseBot:
         print(msg.author==client.user)
         if client.user != msg.author:
             
-            if "samwise" in content.lower() or "sam" in content.lower() or client.user.mentioned_in(msg):
+            if "frodo" in content.lower() or "fredo" in content.lower() or client.user.mentioned_in(msg):
                 context_check = check_keywords(content)
                 if context_check == False:
                     index = rand.randint(0,215)
@@ -65,7 +65,6 @@ class SamwiseBot:
                 continue
         
         return False
-    
     
     client.run(TOKEN)
 
